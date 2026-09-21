@@ -1,0 +1,4 @@
+abstract class AppRouts {
+  static String splashSceen = "/splash";
+  static String homeSceen = "/home";
+}
