@@ -8,6 +8,18 @@ abstract class Fontstyle {
     color: Color(0xff090909),
     fontFamily: "Poppins",
   );
+  static TextStyle bold24 = TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeight(700),
+    color: Color(0xff090909),
+    fontFamily: "Poppins",
+  );
+  static TextStyle bold20 = TextStyle(
+    fontSize: 20.sp,
+    fontWeight: FontWeight(700),
+    color: Color(0xff090909),
+    fontFamily: "Poppins",
+  );
   static TextStyle regular16 = TextStyle(
     fontSize: 16.sp,
     fontWeight: FontWeight(400),
