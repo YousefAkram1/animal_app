@@ -13,6 +13,7 @@ class SearchTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
+        contentPadding: EdgeInsets.symmetric(vertical: 9).h,
         hintText: AppStrings.search,
         hintStyle: Fontstyle.regular16,
 
@@ -20,7 +21,7 @@ class SearchTextField extends StatelessWidget {
         fillColor: AppColors.textFieldColor,
 
         prefixIcon: Padding(
-          padding: EdgeInsets.all(8.w),
+          padding: EdgeInsets.only(top: 12, bottom: 12, left: 16, right: 10).h,
           child: SvgPicture.asset(
             ImageAssets.searchIcon,
             width: 20.w,
@@ -32,7 +33,7 @@ class SearchTextField extends StatelessWidget {
           ),
         ),
         suffixIcon: Padding(
-          padding: EdgeInsets.all(8.w),
+          padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
           child: SvgPicture.asset(
             ImageAssets.settingIcon,
             width: 20.w,

@@ -35,7 +35,7 @@ class _TabSelectItemState extends State<TabSelectItem> {
     return Column(
       children: [
         Wrap(
-          spacing: 3.w,
+          spacing: 2.w,
           children: categories.map((category) {
             final isSelected = selectedCategory == category;
 
@@ -44,6 +44,7 @@ class _TabSelectItemState extends State<TabSelectItem> {
                 ChoiceChip(
                   showCheckmark: false,
                   selectedColor: AppColors.primary,
+                  backgroundColor: AppColors.chipsUnSelectedColor,
 
                   selected: isSelected,
 
