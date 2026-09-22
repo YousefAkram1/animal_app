@@ -1,3 +1,4 @@
+import 'package:animal_app/core/utils/values/app_colors.dart';
 import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
 import 'package:animal_app/core/utils/values/font_style.dart';
@@ -14,7 +15,22 @@ class ButtonSplash extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.5).w,
+
       child: TextButton(
+        style: ButtonStyle(
+          elevation: WidgetStatePropertyAll(10.0),
+          shadowColor: WidgetStatePropertyAll(
+            Colors.black.withValues(alpha: 0.20),
+          ),
+
+          fixedSize: WidgetStatePropertyAll(Size(297.w, 54.h)),
+
+          backgroundColor: WidgetStatePropertyAll(AppColors.primary),
+
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30).r),
+          ),
+        ),
         onPressed: () {
           Navigator.pushNamed(context, AppRouts.homeSceen);
         },
