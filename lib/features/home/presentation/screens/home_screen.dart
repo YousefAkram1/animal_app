@@ -1,11 +1,11 @@
-import 'package:animal_app/core/utils/values/app_colors.dart';
-import 'package:animal_app/core/utils/values/app_strings.dart';
+import 'package:animal_app/core/utils/theme/theme_light.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
-import 'package:animal_app/core/utils/values/font_style.dart';
 import 'package:animal_app/features/home/presentation/widgets/app_bar_widget.dart';
 import 'package:animal_app/features/home/presentation/widgets/card_list_view.dart';
 import 'package:animal_app/features/home/presentation/widgets/chips_selected_widget.dart';
 import 'package:animal_app/features/home/presentation/widgets/search_text_field.dart';
+import 'package:animal_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,7 +26,10 @@ class HomeScreen extends StatelessWidget {
             SizedBox(height: 20.h),
             SearchTextField(),
             SizedBox(height: 20.h),
-            Text(AppStrings.categories, style: Fontstyle.bold20),
+            Text(
+              LocaleKeys.home_categories.tr(),
+              style: lightTheme.textTheme.bodyLarge!.copyWith(fontSize: 20.sp),
+            ),
             SizedBox(height: 14.h),
             TabSelectItem(),
             CardListView(),
@@ -34,29 +37,44 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
 
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        selectedItemColor: AppColors.primary,
-        unselectedItemColor: AppColors.iconTextFieldColor,
-        elevation: 4,
-        items: [
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(ImageAssets.homeIcon),
+      bottomNavigationBar: NavigationBar(
+        height: 76.h,
+        destinations: [
+          NavigationDestination(
+            icon: SvgPicture.asset(
+              width: 30.w,
+              height: 30.h,
+              ImageAssets.homeIcon,
+            ),
             label: '',
           ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(ImageAssets.disableHeart),
+          NavigationDestination(
+            icon: SvgPicture.asset(
+              width: 30.w,
+              height: 30.h,
+              ImageAssets.disableHeart,
+            ),
             label: "",
           ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(ImageAssets.messagesIcon),
+          NavigationDestination(
+            icon: SvgPicture.asset(
+              width: 30.w,
+              height: 30.h,
+              ImageAssets.messagesIcon,
+            ),
             label: '',
           ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(ImageAssets.profileIcon),
+          NavigationDestination(
+            icon: SvgPicture.asset(
+              width: 30.w,
+              height: 30.h,
+              ImageAssets.profileIcon,
+            ),
             label: '',
           ),
         ],
+
+        elevation: 4,
       ),
     );
   }

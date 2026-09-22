@@ -1,7 +1,8 @@
 import 'package:animal_app/core/utils/values/app_colors.dart';
-import 'package:animal_app/core/utils/values/app_strings.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
 import 'package:animal_app/core/utils/values/font_style.dart';
+import 'package:animal_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -14,7 +15,7 @@ class SearchTextField extends StatelessWidget {
     return TextField(
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 9).h,
-        hintText: AppStrings.search,
+        hintText: LocaleKeys.home_search.tr(),
         hintStyle: Fontstyle.regular16,
 
         filled: true,

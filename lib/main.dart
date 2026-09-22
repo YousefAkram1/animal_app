@@ -1,15 +1,22 @@
 import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/features/home/presentation/screens/home_screen.dart';
 import 'package:animal_app/features/splash_screen/presentation/screens/splash_screen.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(const AnimalApp());
-  FlutterNativeSplash.remove();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en'), Locale('ar')],
+      path: 'assets/localization',
+      fallbackLocale: const Locale('ar'),
+      saveLocale: true,
+      child: const AnimalApp(),
+    ),
+  );
 }
 
 class AnimalApp extends StatelessWidget {
