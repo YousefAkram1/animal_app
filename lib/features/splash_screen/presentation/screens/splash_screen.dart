@@ -1,6 +1,6 @@
+import 'package:animal_app/core/utils/values/app_strings.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
 import 'package:animal_app/core/utils/values/font_style.dart';
-import 'package:animal_app/core/utils/values/app_strings.dart';
 import 'package:animal_app/features/splash_screen/presentation/widgets/splash_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
