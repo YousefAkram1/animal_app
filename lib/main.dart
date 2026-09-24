@@ -3,6 +3,8 @@ import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/features/details_screen/data/cubit/get_animal_cubit.dart';
 import 'package:animal_app/features/details_screen/presentation/screen/animal_details_screen.dart';
 import 'package:animal_app/core/networking/repo/app_repo_imple.dart';
+import 'package:animal_app/features/favourite_screen/data/cubit/get_favourite_cubit.dart';
+import 'package:animal_app/features/favourite_screen/data/cubit/send_favourite_cubit.dart';
 import 'package:animal_app/features/favourite_screen/presentation/screens/favourite_screen.dart';
 import 'package:animal_app/features/home/data/home_cubit/cubit/animal_cubit_cubit.dart';
 import 'package:animal_app/features/home/presentation/screens/home_screen.dart';
@@ -38,6 +40,8 @@ class AnimalApp extends StatelessWidget {
           create: (context) => AnimalCubitCubit(AppRepoImple())..getAnimals(),
         ),
         BlocProvider(create: (context) => GetAnimalCubit(AppRepoImple())),
+        BlocProvider(create: (context) => SendFavouriteCubit(AppRepoImple())),
+        BlocProvider(create: (context) => GetFavouriteCubit(AppRepoImple())),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),

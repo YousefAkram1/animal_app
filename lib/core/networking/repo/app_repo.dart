@@ -7,4 +7,9 @@ abstract class AppRepo {
   Future<Either<Failure, AnimalModel>> getAnimalDetails({
     required String animalId,
   });
+
+  Future<Either<Failure, dynamic>> postFavouriteAnimal({
+    required String animalId,
+  });
+  Future<Either<Failure, List<AnimalModel>>> getFavoriteAnimal();
 }

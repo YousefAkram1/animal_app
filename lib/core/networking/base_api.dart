@@ -10,7 +10,7 @@ class Api {
     'Content-Type': 'application/json',
   };
 
-  Map<String, dynamic> queryParameters({required int page}) {
+  Map<String, dynamic> queryParameters({int? page}) {
     return {
       'size': 'med',
       'mime_types': 'jpg',
@@ -20,6 +20,10 @@ class Api {
       'page': page,
       'limit': 10,
     };
+  }
+
+  Map<String, dynamic> Body({required String animalId}) {
+    return {"image_id": animalId};
   }
 
   final Dio dio = Dio();
@@ -37,7 +41,7 @@ class Api {
     );
   }
 
-  Future<dynamic> get({required String path, required int page}) async {
+  Future<dynamic> get({required String path, int? page}) async {
     final Response response = await dio.get(
       '$_baseUrl$path',
       options: Options(headers: headers),
@@ -47,12 +51,24 @@ class Api {
     return response.data;
   }
 
-  Future<dynamic> getDetails({required String path}) async {
+  Future<dynamic> getById({required String path}) async {
     final Response response = await dio.get(
       '$_baseUrl$path',
       options: Options(headers: headers),
     );
 
+    return response.data;
+  }
+
+  Future<dynamic> postData({
+    required String path,
+    required String animalId,
+  }) async {
+    final Response response = await dio.post(
+      "$_baseUrl$path",
+      data: Body(animalId: animalId),
+      options: Options(headers: headers),
+    );
     return response.data;
   }
 }

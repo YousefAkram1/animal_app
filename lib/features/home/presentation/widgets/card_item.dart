@@ -2,7 +2,9 @@ import 'package:animal_app/core/utils/models/animal_model.dart';
 import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
 import 'package:animal_app/core/utils/values/font_style.dart';
+import 'package:animal_app/features/favourite_screen/data/cubit/send_favourite_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -88,10 +90,17 @@ class CardItem extends StatelessWidget {
 
               Padding(
                 padding: EdgeInsets.only(right: 10.w, top: 5.h),
-                child: SvgPicture.asset(
-                  ImageAssets.heartIcon,
-                  width: 28.w,
-                  height: 28.h,
+                child: GestureDetector(
+                  onTap: () {
+                    context.read<SendFavouriteCubit>().sendFavourite(
+                      animalId: animalModel.id!,
+                    );
+                  },
+                  child: SvgPicture.asset(
+                    ImageAssets.heartIcon,
+                    width: 28.w,
+                    height: 28.h,
+                  ),
                 ),
               ),
             ],

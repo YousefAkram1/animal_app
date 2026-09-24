@@ -1,10 +1,11 @@
 import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
 import 'package:animal_app/core/utils/values/font_style.dart';
-import 'package:animal_app/features/details_screen/presentation/widgets/animal_name_row.dart';
+import 'package:animal_app/features/favourite_screen/data/cubit/get_favourite_cubit.dart';
 import 'package:animal_app/features/favourite_screen/presentation/widgets/favourite_card.dart';
 import 'package:animal_app/features/home/presentation/widgets/chips_selected_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -23,19 +24,31 @@ class FavouriteScreen extends StatelessWidget {
             Text("Your Favorite Pets", style: Fontstyle.bold24),
             SizedBox(height: 20.h),
             TabSelectItem(),
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 16.h,
-                  crossAxisSpacing: 19.w,
-                  childAspectRatio: 0.72,
-                ),
-                itemCount: 3,
-                itemBuilder: (context, index) {
-                  return FavouriteCard();
-                },
-              ),
+            BlocBuilder<GetFavouriteCubit, GetFavouriteState>(
+              builder: (context, state) {
+                if (state is GetFavouriteSuccess) {
+                  return Expanded(
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 16.h,
+                        crossAxisSpacing: 19.w,
+                        childAspectRatio: 0.72,
+                      ),
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return FavouriteCard();
+                      },
+                    ),
+                  );
+                } else if (state is GetFavouriteFail) {
+                  return Expanded(
+                    child: Center(child: Text(state.errorMessage)),
+                  );
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              },
             ),
           ],
         ),
