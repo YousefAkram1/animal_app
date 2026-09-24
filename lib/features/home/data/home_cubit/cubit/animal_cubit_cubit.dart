@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:animal_app/core/utils/models/animal_model.dart';
-import 'package:animal_app/features/home/data/repo/app_repo.dart';
+import 'package:animal_app/core/networking/repo/app_repo.dart';
 import 'animal_cubit_state.dart';
 
 class AnimalCubitCubit extends Cubit<AnimalCubitState> {

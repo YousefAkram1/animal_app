@@ -46,4 +46,13 @@ class Api {
 
     return response.data;
   }
+
+  Future<dynamic> getDetails({required String path}) async {
+    final Response response = await dio.get(
+      '$_baseUrl$path',
+      options: Options(headers: headers),
+    );
+
+    return response.data;
+  }
 }

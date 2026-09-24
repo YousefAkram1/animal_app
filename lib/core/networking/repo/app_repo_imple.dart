@@ -24,4 +24,19 @@ class AppRepoImple implements AppRepo {
       return Left(ServerFailure(errorMessage: ErrorHandling.handle(e).message));
     }
   }
+
+  @override
+  Future<Either<Failure, AnimalModel>> getAnimalDetails({
+    required String animalId,
+  }) async {
+    try {
+      final data = await api.getDetails(path: 'images/$animalId');
+
+      final animal = AnimalModel.fromJson(data as Map<String, dynamic>);
+
+      return Right(animal);
+    } catch (e) {
+      return Left(ServerFailure(errorMessage: ErrorHandling.handle(e).message));
+    }
+  }
 }

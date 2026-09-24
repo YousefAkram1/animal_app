@@ -1,9 +1,13 @@
+import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/core/utils/values/app_strings.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
 import 'package:animal_app/core/utils/values/font_style.dart';
-import 'package:animal_app/features/splash_screen/presentation/widgets/splash_button.dart';
+import 'package:animal_app/core/widgets/app_button.dart';
+import 'package:animal_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -27,7 +31,24 @@ class SplashScreen extends StatelessWidget {
             Text(AppStrings.splashTitle, style: Fontstyle.bold32),
             Text(AppStrings.splashDes, style: Fontstyle.regular16),
             SizedBox(height: 61.h),
-            ButtonSplash(),
+            AppButton(
+              width: 297.w,
+              height: 54.h,
+              onPressed: () {
+                Navigator.pushNamed(context, AppRouts.homeSceen);
+              },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(ImageAssets.petsIcon),
+                  SizedBox(width: 12.w),
+                  Text(
+                    LocaleKeys.splash_get_started.tr(),
+                    style: Fontstyle.medium18,
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

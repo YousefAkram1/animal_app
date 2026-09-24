@@ -1,4 +1,5 @@
 import 'package:animal_app/core/utils/models/animal_model.dart';
+import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
 import 'package:animal_app/core/utils/values/font_style.dart';
 import 'package:flutter/material.dart';
@@ -16,73 +17,85 @@ class CardItem extends StatelessWidget {
         ? animalModel.breeds!.first
         : null;
 
-    return Card(
-      color: Colors.white,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
-      elevation: 1,
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 6.w),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.network(
-              animalModel.url ?? '',
-              width: 90.w,
-              height: 90.h,
-              fit: BoxFit.cover,
-            ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          AppRouts.animalDetailsSceen,
+          arguments: animalModel.id,
+        );
+      },
+      child: Card(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.r)),
+        elevation: 1,
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 6.w),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.network(
+                animalModel.url ?? '',
+                width: 90.w,
+                height: 90.h,
+                fit: BoxFit.cover,
+              ),
 
-            SizedBox(width: 16.w),
+              SizedBox(width: 16.w),
 
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(breed?.name ?? 'Unknown', style: Fontstyle.bold18),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(breed?.name ?? 'Unknown', style: Fontstyle.bold18),
 
-                  SizedBox(height: 4.h),
+                    SizedBox(height: 4.h),
 
-                  Text(breed?.origin ?? 'Unknown', style: Fontstyle.regular14),
+                    Text(
+                      breed?.origin ?? 'Unknown',
+                      style: Fontstyle.regular14,
+                    ),
 
-                  Text(
-                    breed?.lifeSpan ?? 'Unknown',
-                    style: Fontstyle.regular14,
-                  ),
+                    Text(
+                      breed?.lifeSpan ?? 'Unknown',
+                      style: Fontstyle.regular14,
+                    ),
 
-                  SizedBox(height: 9.h),
+                    SizedBox(height: 9.h),
 
-                  Row(
-                    children: [
-                      SvgPicture.asset(
-                        ImageAssets.locationIcon,
-                        width: 18.w,
-                        height: 18.h,
-                      ),
-
-                      SizedBox(width: 4.w),
-
-                      Expanded(
-                        child: Text(
-                          breed?.origin ?? 'Unknown',
-                          style: Fontstyle.regular14,
-                          overflow: TextOverflow.ellipsis,
+                    Row(
+                      children: [
+                        SvgPicture.asset(
+                          ImageAssets.locationIcon,
+                          width: 18.w,
+                          height: 18.h,
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
 
-            Padding(
-              padding: EdgeInsets.only(right: 10.w, top: 5.h),
-              child: SvgPicture.asset(
-                ImageAssets.heartIcon,
-                width: 28.w,
-                height: 28.h,
+                        SizedBox(width: 4.w),
+
+                        Expanded(
+                          child: Text(
+                            breed?.origin ?? 'Unknown',
+                            style: Fontstyle.regular14,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+
+              Padding(
+                padding: EdgeInsets.only(right: 10.w, top: 5.h),
+                child: SvgPicture.asset(
+                  ImageAssets.heartIcon,
+                  width: 28.w,
+                  height: 28.h,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

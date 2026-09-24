@@ -44,4 +44,10 @@ abstract class Fontstyle {
     color: Color(0xffFFFFFF),
     fontFamily: "Poppins",
   );
+  static TextStyle semiBold22 = TextStyle(
+    fontSize: 22.sp,
+    fontWeight: FontWeight(600),
+    color: Colors.black,
+    fontFamily: "Poppins",
+  );
 }

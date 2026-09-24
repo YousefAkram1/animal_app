@@ -1,7 +1,7 @@
 import 'package:animal_app/core/utils/theme/theme_light.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
-import 'package:animal_app/features/home/presentation/home_cubit/cubit/animal_cubit_cubit.dart';
-import 'package:animal_app/features/home/presentation/home_cubit/cubit/animal_cubit_state.dart';
+import 'package:animal_app/features/home/data/home_cubit/cubit/animal_cubit_cubit.dart';
+import 'package:animal_app/features/home/data/home_cubit/cubit/animal_cubit_state.dart';
 import 'package:animal_app/features/home/presentation/widgets/app_bar_widget.dart';
 import 'package:animal_app/features/home/presentation/widgets/card_list_view.dart';
 import 'package:animal_app/features/home/presentation/widgets/chips_selected_widget.dart';
@@ -71,6 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
 
       bottomNavigationBar: NavigationBar(
+        onDestinationSelected: (value) {},
         height: 76.h,
         destinations: [
           NavigationDestination(

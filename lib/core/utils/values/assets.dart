@@ -11,4 +11,7 @@ abstract class ImageAssets {
   static String messagesIcon = "assets/images/messages.svg";
   static String profileIcon = "assets/images/profile-circle.svg";
   static String disableHeart = "assets/images/disable_heart.svg";
+  static String dogImage = "assets/images/dog_image2.png";
+  static String arrowLeftIcon = "assets/images/arrow-left.svg";
+  static String fullHeartIcon = "assets/images/full_heart.svg";
 }

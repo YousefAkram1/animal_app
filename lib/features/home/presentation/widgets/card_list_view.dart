@@ -1,5 +1,5 @@
 import 'package:animal_app/core/utils/models/animal_model.dart';
-import 'package:animal_app/features/home/presentation/home_cubit/cubit/animal_cubit_cubit.dart';
+import 'package:animal_app/features/home/data/home_cubit/cubit/animal_cubit_cubit.dart';
 import 'package:animal_app/features/home/presentation/widgets/card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

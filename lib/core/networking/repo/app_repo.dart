@@ -4,4 +4,7 @@ import 'package:animal_app/core/utils/models/animal_model.dart';
 
 abstract class AppRepo {
   Future<Either<Failure, List<AnimalModel>>> getAnimals({required int page});
+  Future<Either<Failure, AnimalModel>> getAnimalDetails({
+    required String animalId,
+  });
 }
