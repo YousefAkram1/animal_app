@@ -1,4 +1,5 @@
 import 'package:animal_app/core/utils/theme/theme_light.dart';
+import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
 import 'package:animal_app/features/home/data/home_cubit/cubit/animal_cubit_cubit.dart';
 import 'package:animal_app/features/home/data/home_cubit/cubit/animal_cubit_state.dart';
@@ -71,7 +72,17 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
 
       bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (value) {},
+        onDestinationSelected: (value) {
+          if (value == 1) {
+            Navigator.pushNamed(context, AppRouts.favoriteSceen);
+          } else if (value == 0) {
+            Navigator.pushNamed(context, AppRouts.homeSceen);
+          } else if (value == 2) {
+            // Handle messages navigation
+          } else if (value == 3) {
+            // Handle profile navigation
+          }
+        },
         height: 76.h,
         destinations: [
           NavigationDestination(

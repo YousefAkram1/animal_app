@@ -3,6 +3,7 @@ import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/features/details_screen/data/cubit/get_animal_cubit.dart';
 import 'package:animal_app/features/details_screen/presentation/screen/animal_details_screen.dart';
 import 'package:animal_app/core/networking/repo/app_repo_imple.dart';
+import 'package:animal_app/features/favourite_screen/presentation/screens/favourite_screen.dart';
 import 'package:animal_app/features/home/data/home_cubit/cubit/animal_cubit_cubit.dart';
 import 'package:animal_app/features/home/presentation/screens/home_screen.dart';
 import 'package:animal_app/features/splash_screen/presentation/screens/splash_screen.dart';
@@ -50,6 +51,7 @@ class AnimalApp extends StatelessWidget {
               AppRouts.homeSceen: (context) => HomeScreen(),
               AppRouts.animalDetailsSceen: (context) =>
                   const AnimalDetailsScreen(),
+              AppRouts.favoriteSceen: (context) => const FavouriteScreen(),
             },
             debugShowCheckedModeBanner: false,
             home: SplashScreen(),

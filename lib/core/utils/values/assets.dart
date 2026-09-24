@@ -14,4 +14,6 @@ abstract class ImageAssets {
   static String dogImage = "assets/images/dog_image2.png";
   static String arrowLeftIcon = "assets/images/arrow-left.svg";
   static String fullHeartIcon = "assets/images/full_heart.svg";
+  static String homeUnselectedIcon = "assets/images/homeUnSelected.svg";
+  static String heartFrame = "assets/images/heart_frame.png";
 }
