@@ -48,7 +48,11 @@ class _CardListViewState extends State<CardListView> {
         physics: const BouncingScrollPhysics(),
         itemCount: widget.animals.length,
         itemBuilder: (context, index) {
-          return CardItem(animalModel: widget.animals[index]);
+          return CardItem(
+            breed: widget.animals[index].breeds![0],
+            image: widget.animals[index].url!,
+            id: widget.animals[index].id!,
+          );
         },
       ),
     );

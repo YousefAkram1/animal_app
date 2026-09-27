@@ -1,4 +1,4 @@
-import 'package:animal_app/core/utils/models/animal_model.dart';
+import 'package:animal_app/core/utils/models/breed.dart';
 import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
 import 'package:animal_app/core/utils/values/font_style.dart';
@@ -9,22 +9,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class CardItem extends StatelessWidget {
-  const CardItem({super.key, required this.animalModel});
-
-  final AnimalModel animalModel;
+  const CardItem({
+    super.key,
+    required this.breed,
+    required this.image,
+    required this.id,
+  });
+  final Breed breed;
+  final String image;
+  final String id;
 
   @override
   Widget build(BuildContext context) {
-    final breed = animalModel.breeds?.isNotEmpty == true
-        ? animalModel.breeds!.first
-        : null;
-
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(
           context,
           AppRouts.animalDetailsSceen,
-          arguments: animalModel.id,
+          arguments: id,
         );
       },
       child: Card(
@@ -37,7 +39,7 @@ class CardItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.network(
-                animalModel.url ?? '',
+                image,
                 width: 90.w,
                 height: 90.h,
                 fit: BoxFit.cover,
@@ -49,17 +51,14 @@ class CardItem extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(breed?.name ?? 'Unknown', style: Fontstyle.bold18),
+                    Text(breed.name ?? 'Unknown', style: Fontstyle.bold18),
 
                     SizedBox(height: 4.h),
 
-                    Text(
-                      breed?.origin ?? 'Unknown',
-                      style: Fontstyle.regular14,
-                    ),
+                    Text(breed.origin ?? 'Unknown', style: Fontstyle.regular14),
 
                     Text(
-                      breed?.lifeSpan ?? 'Unknown',
+                      breed.lifeSpan ?? 'Unknown',
                       style: Fontstyle.regular14,
                     ),
 
@@ -77,7 +76,7 @@ class CardItem extends StatelessWidget {
 
                         Expanded(
                           child: Text(
-                            breed?.origin ?? 'Unknown',
+                            breed.origin ?? 'Unknown',
                             style: Fontstyle.regular14,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -93,7 +92,7 @@ class CardItem extends StatelessWidget {
                 child: GestureDetector(
                   onTap: () {
                     context.read<SendFavouriteCubit>().sendFavourite(
-                      animalId: animalModel.id!,
+                      animalId: id,
                     );
                   },
                   child: SvgPicture.asset(
