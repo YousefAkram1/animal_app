@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:animal_app/core/utils/models/animal_model.dart';
@@ -5,15 +6,26 @@ import 'package:animal_app/core/networking/repo/app_repo.dart';
 import 'animal_cubit_state.dart';
 
 class AnimalCubitCubit extends Cubit<AnimalCubitState> {
-  AnimalCubitCubit(this.appRepo) : super(AnimalCubitInitial());
+  AnimalCubitCubit(this.appRepo) : super(AnimalCubitInitial()) {
+    scrollController.addListener(_onScroll);
+  }
 
   final AppRepo appRepo;
+
+  final ScrollController scrollController = ScrollController();
 
   final List<AnimalModel> animals = [];
 
   int currentPage = 0;
 
   bool isLoadingMore = false;
+
+  void _onScroll() {
+    if (scrollController.position.pixels >=
+        scrollController.position.maxScrollExtent - 300) {
+      loadMoreAnimals();
+    }
+  }
 
   Future<void> getAnimals() async {
     emit(AnimalCubitLoading());
@@ -60,5 +72,11 @@ class AnimalCubitCubit extends Cubit<AnimalCubitState> {
         emit(AnimalCubitSuccess(animals: List.from(animals)));
       },
     );
+  }
+
+  @override
+  Future<void> close() {
+    scrollController.dispose();
+    return super.close();
   }
 }

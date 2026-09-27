@@ -14,37 +14,11 @@ class CardListView extends StatefulWidget {
 }
 
 class _CardListViewState extends State<CardListView> {
-  late final ScrollController scrollController;
-
-  @override
-  void initState() {
-    super.initState();
-
-    scrollController = ScrollController();
-
-    scrollController.addListener(_onScroll);
-  }
-
-  void _onScroll() {
-    if (scrollController.position.pixels >=
-        scrollController.position.maxScrollExtent - 200) {
-      context.read<AnimalCubitCubit>().loadMoreAnimals();
-    }
-  }
-
-  @override
-  void dispose() {
-    scrollController.removeListener(_onScroll);
-    scrollController.dispose();
-
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-        controller: scrollController,
+        controller: context.read<AnimalCubitCubit>().scrollController,
         physics: const BouncingScrollPhysics(),
         itemCount: widget.animals.length,
         itemBuilder: (context, index) {
