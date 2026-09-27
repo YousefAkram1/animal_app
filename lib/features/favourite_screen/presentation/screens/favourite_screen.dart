@@ -17,45 +17,47 @@ class FavouriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(left: 16.w, right: 19.w),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 74.h),
-            Text(
-              LocaleKeys.favourite_favouriteTitle.tr(),
-              style: Fontstyle.bold24,
-            ),
-            SizedBox(height: 20.h),
-            TabSelectItem(),
-            BlocBuilder<GetFavouriteCubit, GetFavouriteState>(
-              builder: (context, state) {
-                if (state is GetFavouriteSuccess) {
-                  return Expanded(
-                    child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 16.h,
-                        crossAxisSpacing: 19.w,
-                        childAspectRatio: 0.72,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.only(left: 16.w, right: 19.w),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 30.h),
+              Text(
+                LocaleKeys.favourite_favouriteTitle.tr(),
+                style: Fontstyle.bold24,
+              ),
+              SizedBox(height: 20.h),
+              TabSelectItem(),
+              BlocBuilder<GetFavouriteCubit, GetFavouriteState>(
+                builder: (context, state) {
+                  if (state is GetFavouriteSuccess) {
+                    return Expanded(
+                      child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 16.h,
+                          crossAxisSpacing: 19.w,
+                          childAspectRatio: 0.72,
+                        ),
+                        itemCount: 3,
+                        itemBuilder: (context, index) {
+                          return FavouriteCard();
+                        },
                       ),
-                      itemCount: 3,
-                      itemBuilder: (context, index) {
-                        return FavouriteCard();
-                      },
-                    ),
-                  );
-                } else if (state is GetFavouriteFail) {
-                  return Expanded(
-                    child: Center(child: Text(state.errorMessage)),
-                  );
-                } else {
-                  return Center(child: CircularProgressIndicator());
-                }
-              },
-            ),
-          ],
+                    );
+                  } else if (state is GetFavouriteFail) {
+                    return Expanded(
+                      child: Center(child: Text(state.errorMessage)),
+                    );
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
+              ),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: NavigationBar(

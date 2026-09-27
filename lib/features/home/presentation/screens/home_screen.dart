@@ -49,46 +49,48 @@ class _HomeScreenState extends State<HomeScreen> {
         }
       },
       child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16).w,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 74.h),
-              AppBarWidget(),
-              SizedBox(height: 20.h),
-              SearchTextField(),
-              SizedBox(height: 20.h),
-              Text(
-                LocaleKeys.home_categories.tr(),
-                style: lightTheme.textTheme.bodyLarge!.copyWith(
-                  fontSize: 20.sp,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16).w,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: 30.h),
+                AppBarWidget(),
+                SizedBox(height: 20.h),
+                SearchTextField(),
+                SizedBox(height: 20.h),
+                Text(
+                  LocaleKeys.home_categories.tr(),
+                  style: lightTheme.textTheme.bodyLarge!.copyWith(
+                    fontSize: 20.sp,
+                  ),
                 ),
-              ),
-              SizedBox(height: 14.h),
-              TabSelectItem(),
-              BlocBuilder<AnimalCubitCubit, AnimalCubitState>(
-                builder: (context, state) {
-                  if (state is AnimalCubitLoading) {
-                    return const Expanded(
-                      child: Center(child: CircularProgressIndicator()),
-                    );
-                  }
+                SizedBox(height: 14.h),
+                TabSelectItem(),
+                BlocBuilder<AnimalCubitCubit, AnimalCubitState>(
+                  builder: (context, state) {
+                    if (state is AnimalCubitLoading) {
+                      return const Expanded(
+                        child: Center(child: CircularProgressIndicator()),
+                      );
+                    }
 
-                  if (state is AnimalCubitError) {
-                    return Expanded(
-                      child: Center(child: Text(state.errorMessage)),
-                    );
-                  }
+                    if (state is AnimalCubitError) {
+                      return Expanded(
+                        child: Center(child: Text(state.errorMessage)),
+                      );
+                    }
 
-                  if (state is AnimalCubitSuccess) {
-                    return CardListView(animals: state.animals);
-                  }
+                    if (state is AnimalCubitSuccess) {
+                      return CardListView(animals: state.animals);
+                    }
 
-                  return const SizedBox();
-                },
-              ),
-            ],
+                    return const SizedBox();
+                  },
+                ),
+              ],
+            ),
           ),
         ),
 

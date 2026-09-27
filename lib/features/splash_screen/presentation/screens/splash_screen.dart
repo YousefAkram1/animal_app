@@ -1,5 +1,4 @@
 import 'package:animal_app/core/utils/values/app_routs.dart';
-import 'package:animal_app/core/utils/values/app_strings.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
 import 'package:animal_app/core/utils/values/font_style.dart';
 import 'package:animal_app/core/widgets/app_button.dart';

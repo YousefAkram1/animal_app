@@ -1,6 +1,7 @@
 import 'package:animal_app/core/errors/error_handling.dart';
 import 'package:animal_app/core/errors/failure.dart';
 import 'package:animal_app/core/networking/base_api.dart';
+import 'package:animal_app/core/networking/repo/api_paths.dart';
 import 'package:dartz/dartz.dart';
 import 'package:animal_app/core/utils/models/animal_model.dart';
 import 'app_repo.dart';
@@ -13,7 +14,7 @@ class AppRepoImple implements AppRepo {
     required int page,
   }) async {
     try {
-      final data = await api.get(path: 'images/search', page: page);
+      final data = await api.get(path: ApiPath.search, page: page);
 
       final animals = (data as List)
           .map((animal) => AnimalModel.fromJson(animal as Map<String, dynamic>))
@@ -30,7 +31,9 @@ class AppRepoImple implements AppRepo {
     required String animalId,
   }) async {
     try {
-      final data = await api.getById(path: 'images/$animalId');
+      final data = await api.getById(
+        path: ApiPath.getIdPath(animalId: animalId),
+      );
 
       final animal = AnimalModel.fromJson(data as Map<String, dynamic>);
 
@@ -46,7 +49,7 @@ class AppRepoImple implements AppRepo {
   }) async {
     try {
       final response = await api.postData(
-        path: "v1/favourites",
+        path: ApiPath.favouritePath,
         animalId: animalId,
       );
       return Right(response);
@@ -59,7 +62,7 @@ class AppRepoImple implements AppRepo {
   Future<Either<Failure, List<AnimalModel>>> getFavoriteAnimal() async {
     {
       try {
-        final data = await api.get(path: "v1/favourites");
+        final data = await api.get(path: ApiPath.favouritePath);
 
         final animals = (data as List)
             .map(
