@@ -22,8 +22,9 @@ void main() async {
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],
       path: 'assets/localization',
-      fallbackLocale: const Locale('ar'),
-      saveLocale: true,
+      fallbackLocale: const Locale('en'),
+      saveLocale: false,
+      startLocale: Locale("en"),
       child: const AnimalApp(),
     ),
   );
@@ -50,6 +51,9 @@ class AnimalApp extends StatelessWidget {
         // Use builder only if you need to use library outside ScreenUtilInit context
         builder: (_, child) {
           return MaterialApp(
+            localizationsDelegates: context.localizationDelegates,
+            supportedLocales: context.supportedLocales,
+            locale: context.locale,
             routes: {
               AppRouts.splashSceen: (context) => SplashScreen(),
               AppRouts.homeSceen: (context) => HomeScreen(),

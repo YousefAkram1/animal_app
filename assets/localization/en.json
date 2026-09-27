@@ -9,5 +9,13 @@
     "title": "Find Your Forever Pet",
     "search": "Search",
     "categories": "Categories"
+  },
+  "details" :{
+    "adobtNow": "Adopt Now",
+    "about" :"About:"
+  },
+  "favourite" :{
+    "favouriteTitle" : "Your Favorite Pets"
   }
+  
 }

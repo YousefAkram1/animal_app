@@ -2,7 +2,7 @@
 
 // ignore_for_file: constant_identifier_names
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const splash_title = 'splash.title';
   static const splash_description = 'splash.description';
   static const splash_get_started = 'splash.get_started';
@@ -11,4 +11,10 @@ abstract class LocaleKeys {
   static const home_search = 'home.search';
   static const home_categories = 'home.categories';
   static const home = 'home';
+  static const details_adobtNow = 'details.adobtNow';
+  static const details_about = 'details.about';
+  static const details = 'details';
+  static const favourite_favouriteTitle = 'favourite.favouriteTitle';
+  static const favourite = 'favourite';
+
 }

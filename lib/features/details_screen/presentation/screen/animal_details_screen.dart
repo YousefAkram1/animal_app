@@ -4,6 +4,8 @@ import 'package:animal_app/features/details_screen/presentation/widgets/animal_n
 import 'package:animal_app/features/details_screen/presentation/widgets/details_chip.dart';
 import 'package:animal_app/features/details_screen/presentation/widgets/image_stack_widget.dart';
 import 'package:animal_app/core/widgets/app_button.dart';
+import 'package:animal_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -80,7 +82,10 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
 
                         SizedBox(height: 21.h),
 
-                        Text("About:", style: Fontstyle.semiBold22),
+                        Text(
+                          LocaleKeys.details_about.tr(),
+                          style: Fontstyle.semiBold22,
+                        ),
 
                         SizedBox(height: 7.h),
 
@@ -98,7 +103,7 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
                           height: 54.h,
 
                           child: Text(
-                            "Adopt Now",
+                            LocaleKeys.details_adobtNow.tr(),
 
                             style: Fontstyle.medium18.copyWith(
                               color: Colors.white,

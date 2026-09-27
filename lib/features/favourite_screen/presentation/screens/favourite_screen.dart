@@ -4,6 +4,8 @@ import 'package:animal_app/core/utils/values/font_style.dart';
 import 'package:animal_app/features/favourite_screen/data/cubit/get_favourite_cubit.dart';
 import 'package:animal_app/features/favourite_screen/presentation/widgets/favourite_card.dart';
 import 'package:animal_app/features/home/presentation/widgets/chips_selected_widget.dart';
+import 'package:animal_app/generated/locale_keys.g.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,7 +23,10 @@ class FavouriteScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 74.h),
-            Text("Your Favorite Pets", style: Fontstyle.bold24),
+            Text(
+              LocaleKeys.favourite_favouriteTitle.tr(),
+              style: Fontstyle.bold24,
+            ),
             SizedBox(height: 20.h),
             TabSelectItem(),
             BlocBuilder<GetFavouriteCubit, GetFavouriteState>(

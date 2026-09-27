@@ -28,8 +28,11 @@ class SplashScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 50.h),
-            Text(AppStrings.splashTitle, style: Fontstyle.bold32),
-            Text(AppStrings.splashDes, style: Fontstyle.regular16),
+            Text(LocaleKeys.splash_title.tr(), style: Fontstyle.bold32),
+            Text(
+              LocaleKeys.splash_description.tr(),
+              style: Fontstyle.regular16,
+            ),
             SizedBox(height: 61.h),
             AppButton(
               width: 297.w,
