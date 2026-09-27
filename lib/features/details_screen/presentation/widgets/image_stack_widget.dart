@@ -37,9 +37,7 @@ class ImageStack extends StatelessWidget {
               ),
 
               GestureDetector(
-                onTap: () {
-                  // Handle heart icon tap
-                },
+                onTap: () {},
                 child: SvgPicture.asset(
                   width: 31.w,
                   height: 31.h,

@@ -3,6 +3,7 @@ import 'package:animal_app/core/utils/values/assets.dart';
 import 'package:animal_app/core/utils/values/font_style.dart';
 import 'package:animal_app/features/favourite_screen/data/cubit/get_favourite_cubit.dart';
 import 'package:animal_app/features/favourite_screen/presentation/widgets/favourite_card.dart';
+import 'package:animal_app/features/favourite_screen/presentation/widgets/favourite_card_shimmer.dart';
 import 'package:animal_app/features/home/presentation/widgets/chips_selected_widget.dart';
 import 'package:animal_app/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -52,7 +53,20 @@ class FavouriteScreen extends StatelessWidget {
                       child: Center(child: Text(state.errorMessage)),
                     );
                   } else {
-                    return Center(child: CircularProgressIndicator());
+                    return Expanded(
+                      child: GridView.builder(
+                        itemCount: 6,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.65,
+                          crossAxisSpacing: 10.w,
+                          mainAxisSpacing: 10.h,
+                        ),
+                        itemBuilder: (context, index) {
+                          return const FavouriteCardShimmer();
+                        },
+                      ),
+                    );
                   }
                 },
               ),

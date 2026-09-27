@@ -1,5 +1,6 @@
 import 'package:animal_app/core/utils/values/font_style.dart';
 import 'package:animal_app/features/details_screen/data/cubit/get_animal_cubit.dart';
+import 'package:animal_app/features/details_screen/presentation/widgets/animal_details_shimmer.dart';
 import 'package:animal_app/features/details_screen/presentation/widgets/animal_name_row.dart';
 import 'package:animal_app/features/details_screen/presentation/widgets/details_chip.dart';
 import 'package:animal_app/features/details_screen/presentation/widgets/image_stack_widget.dart';
@@ -44,7 +45,7 @@ class _AnimalDetailsScreenState extends State<AnimalDetailsScreen> {
       body: BlocBuilder<GetAnimalCubit, GetAnimalState>(
         builder: (context, state) {
           if (state is GetAnimalLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return AnimalDetailsShimmer();
           }
 
           if (state is GetAnimalError) {

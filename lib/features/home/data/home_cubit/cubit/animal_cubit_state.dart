@@ -15,11 +15,12 @@ class AnimalCubitLoading extends AnimalCubitState {}
 
 class AnimalCubitSuccess extends AnimalCubitState {
   final List<AnimalModel> animals;
+  final bool isLoadingMore;
 
-  const AnimalCubitSuccess({required this.animals});
+  const AnimalCubitSuccess({required this.animals, this.isLoadingMore = false});
 
   @override
-  List<Object?> get props => [animals];
+  List<Object?> get props => [animals, isLoadingMore];
 }
 
 class AnimalCubitError extends AnimalCubitState {

@@ -1,34 +1,45 @@
 import 'package:animal_app/core/utils/models/animal_model.dart';
-import 'package:animal_app/features/home/data/home_cubit/cubit/animal_cubit_cubit.dart';
 import 'package:animal_app/features/home/presentation/widgets/card_item.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:animal_app/features/home/presentation/widgets/card_shimmer.dart';
 
-class CardListView extends StatefulWidget {
-  const CardListView({super.key, required this.animals});
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class CardListView extends StatelessWidget {
+  const CardListView({
+    super.key,
+    required this.animals,
+    required this.scrollController,
+    required this.isLoadingMore,
+  });
 
   final List<AnimalModel> animals;
+  final ScrollController scrollController;
+  final bool isLoadingMore;
 
-  @override
-  State<CardListView> createState() => _CardListViewState();
-}
-
-class _CardListViewState extends State<CardListView> {
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        controller: context.read<AnimalCubitCubit>().scrollController,
-        physics: const BouncingScrollPhysics(),
-        itemCount: widget.animals.length,
-        itemBuilder: (context, index) {
-          return CardItem(
-            breed: widget.animals[index].breeds![0],
-            image: widget.animals[index].url!,
-            id: widget.animals[index].id!,
-          );
-        },
-      ),
+    return ListView.builder(
+      controller: scrollController,
+
+      itemCount: animals.length + (isLoadingMore ? 1 : 0),
+
+      itemBuilder: (context, index) {
+        if (index == animals.length) {
+          return const CardItemShimmer();
+        }
+
+        final animal = animals[index];
+
+        return Padding(
+          padding: EdgeInsets.only(bottom: 10.h),
+          child: CardItem(
+            breed: animal.breeds!.first,
+            image: animal.url!,
+            id: animal.id!,
+          ),
+        );
+      },
     );
   }
 }

@@ -1,15 +1,22 @@
 import 'package:animal_app/core/utils/theme/theme_light.dart';
 import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
+
 import 'package:animal_app/features/favourite_screen/data/cubit/send_favourite_cubit.dart';
+
 import 'package:animal_app/features/home/data/home_cubit/cubit/animal_cubit_cubit.dart';
 import 'package:animal_app/features/home/data/home_cubit/cubit/animal_cubit_state.dart';
+
 import 'package:animal_app/features/home/presentation/widgets/app_bar_widget.dart';
 import 'package:animal_app/features/home/presentation/widgets/card_list_view.dart';
+import 'package:animal_app/features/home/presentation/widgets/card_shimmer.dart';
 import 'package:animal_app/features/home/presentation/widgets/chips_selected_widget.dart';
 import 'package:animal_app/features/home/presentation/widgets/search_text_field.dart';
+
 import 'package:animal_app/generated/locale_keys.g.dart';
+
 import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,11 +31,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BlocListener<SendFavouriteCubit, SendFavouriteState>(
       listener: (context, state) {
@@ -36,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               backgroundColor: Colors.green,
-              content: Text("Send Success"),
+              content: Text('Send Success'),
             ),
           );
         } else if (state is SendFavouriteFail) {
@@ -56,38 +58,57 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 30.h),
+
                 AppBarWidget(),
+
                 SizedBox(height: 20.h),
+
                 SearchTextField(),
+
                 SizedBox(height: 20.h),
+
                 Text(
                   LocaleKeys.home_categories.tr(),
                   style: lightTheme.textTheme.bodyLarge!.copyWith(
                     fontSize: 20.sp,
                   ),
                 ),
+
                 SizedBox(height: 14.h),
+
                 TabSelectItem(),
-                BlocBuilder<AnimalCubitCubit, AnimalCubitState>(
-                  builder: (context, state) {
-                    if (state is AnimalCubitLoading) {
-                      return const Expanded(
-                        child: Center(child: CircularProgressIndicator()),
-                      );
-                    }
 
-                    if (state is AnimalCubitError) {
-                      return Expanded(
-                        child: Center(child: Text(state.errorMessage)),
-                      );
-                    }
+                SizedBox(height: 10.h),
 
-                    if (state is AnimalCubitSuccess) {
-                      return CardListView(animals: state.animals);
-                    }
+                Expanded(
+                  child: BlocBuilder<AnimalCubitCubit, AnimalCubitState>(
+                    builder: (context, state) {
+                      if (state is AnimalCubitLoading) {
+                        return ListView.builder(
+                          itemCount: 7,
+                          itemBuilder: (context, index) {
+                            return const CardItemShimmer();
+                          },
+                        );
+                      }
 
-                    return const SizedBox();
-                  },
+                      if (state is AnimalCubitError) {
+                        return Center(child: Text(state.errorMessage));
+                      }
+
+                      if (state is AnimalCubitSuccess) {
+                        return CardListView(
+                          animals: state.animals,
+                          scrollController: context
+                              .read<AnimalCubitCubit>()
+                              .scrollController,
+                          isLoadingMore: state.isLoadingMore,
+                        );
+                      }
+
+                      return const SizedBox();
+                    },
+                  ),
                 ),
               ],
             ),
@@ -122,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: 30.h,
                 ImageAssets.disableHeart,
               ),
-              label: "",
+              label: '',
             ),
             NavigationDestination(
               icon: SvgPicture.asset(
@@ -141,7 +162,6 @@ class _HomeScreenState extends State<HomeScreen> {
               label: '',
             ),
           ],
-
           elevation: 4,
         ),
       ),

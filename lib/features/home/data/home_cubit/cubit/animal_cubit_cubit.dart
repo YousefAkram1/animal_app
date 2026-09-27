@@ -52,6 +52,8 @@ class AnimalCubitCubit extends Cubit<AnimalCubitState> {
 
     isLoadingMore = true;
 
+    emit(AnimalCubitSuccess(animals: List.from(animals), isLoadingMore: true));
+
     final nextPage = currentPage + 1;
 
     final result = await appRepo.getAnimals(page: nextPage);
@@ -60,7 +62,9 @@ class AnimalCubitCubit extends Cubit<AnimalCubitState> {
       (failure) {
         isLoadingMore = false;
 
-        emit(AnimalCubitError(errorMessage: failure.errorMessage));
+        emit(
+          AnimalCubitSuccess(animals: List.from(animals), isLoadingMore: false),
+        );
       },
       (newAnimals) {
         currentPage = nextPage;
@@ -69,7 +73,9 @@ class AnimalCubitCubit extends Cubit<AnimalCubitState> {
 
         isLoadingMore = false;
 
-        emit(AnimalCubitSuccess(animals: List.from(animals)));
+        emit(
+          AnimalCubitSuccess(animals: List.from(animals), isLoadingMore: false),
+        );
       },
     );
   }
