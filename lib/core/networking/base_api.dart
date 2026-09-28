@@ -1,7 +1,9 @@
+import 'package:animal_app/core/errors/exception.dart';
+import 'package:animal_app/core/errors/model/error_model.dart';
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-class Api {
+class ApiBase {
   final String _baseUrl = 'https://api.thecatapi.com/v1/';
 
   final Map<String, String> headers = {
@@ -10,25 +12,9 @@ class Api {
     'Content-Type': 'application/json',
   };
 
-  Map<String, dynamic> queryParameters({int? page}) {
-    return {
-      'size': 'med',
-      'mime_types': 'jpg',
-      'format': 'json',
-      'has_breeds': true,
-      'order': 'RANDOM',
-      'page': page,
-      'limit': 10,
-    };
-  }
-
-  Map<String, dynamic> Body({required String animalId}) {
-    return {"image_id": animalId};
-  }
-
   final Dio dio = Dio();
 
-  Api() {
+  ApiBase() {
     dio.interceptors.add(
       PrettyDioLogger(
         requestHeader: true,
@@ -41,34 +27,59 @@ class Api {
     );
   }
 
-  Future<dynamic> get({required String path, int? page}) async {
-    final Response response = await dio.get(
-      '$_baseUrl$path',
-      options: Options(headers: headers),
-      queryParameters: queryParameters(page: page),
-    );
-
-    return response.data;
-  }
-
-  Future<dynamic> getById({required String path}) async {
-    final Response response = await dio.get(
-      '$_baseUrl$path',
-      options: Options(headers: headers),
-    );
-
-    return response.data;
-  }
-
-  Future<dynamic> postData({
+  Future<dynamic> get({
     required String path,
-    required String animalId,
+    Map<String, dynamic>? queryParameters,
   }) async {
-    final Response response = await dio.post(
-      "$_baseUrl$path",
-      data: Body(animalId: animalId),
-      options: Options(headers: headers),
+    dio.options.headers = headers;
+    final response = await dio.get(
+      '$_baseUrl$path',
+      queryParameters: queryParameters,
     );
-    return response.data;
+
+    return returnResponse(response).data;
+  }
+
+  Future<dynamic> post({
+    required String path,
+    Map<String, dynamic>? data,
+    Map<String, dynamic>? queryParameters,
+  }) async {
+    dio.options.headers = headers;
+    final response = await dio.post(
+      '$_baseUrl$path',
+      data: data,
+      queryParameters: queryParameters,
+    );
+
+    return returnResponse(response).data;
+  }
+
+  Response returnResponse(Response? response) {
+    if (response == null) {
+      throw ErrorModel(message: "There is no data");
+    }
+
+    switch (response.statusCode) {
+      case 200:
+      case 201:
+        return response;
+      case 400:
+        throw ServerException(
+          message: response.data['message'],
+          errorMap: response.data["errors"],
+        );
+      case 422:
+        throw ServerException(
+          message: response.data['message'],
+          errorMap: response.data["errors"],
+        );
+      case 401:
+        throw ServerException(message: response.data['message']);
+      case 500:
+        throw ServerException(message: "Server Error");
+      default:
+        throw ServerException(message: "We will fix it soon");
+    }
   }
 }

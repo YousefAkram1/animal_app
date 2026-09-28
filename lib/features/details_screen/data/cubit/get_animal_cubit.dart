@@ -1,17 +1,17 @@
-import 'package:animal_app/core/networking/repo/app_repo.dart';
 import 'package:animal_app/core/utils/models/animal_model.dart';
+import 'package:animal_app/features/details_screen/data/repo/details_repo_imple.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
 part 'get_animal_state.dart';
 
 class GetAnimalCubit extends Cubit<GetAnimalState> {
-  AppRepo appRepo;
+  DetailsRepoImple detailsRepo;
 
-  GetAnimalCubit(this.appRepo) : super(GetAnimalInitial());
+  GetAnimalCubit(this.detailsRepo) : super(GetAnimalInitial());
   Future<void> getAnimalDetails({required String animalId}) async {
     emit(GetAnimalLoading());
-    final result = await appRepo.getAnimalDetails(animalId: animalId);
+    final result = await detailsRepo.getAnimalDetails(animalId: animalId);
     result.fold(
       (failure) {
         emit(GetAnimalError(errorMessage: failure.errorMessage));

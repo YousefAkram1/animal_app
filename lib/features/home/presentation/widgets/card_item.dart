@@ -1,8 +1,10 @@
 import 'package:animal_app/core/utils/models/breed.dart';
+import 'package:animal_app/core/utils/values/app_colors.dart';
 import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
 import 'package:animal_app/core/utils/values/font_style.dart';
-import 'package:animal_app/features/favourite_screen/data/cubit/send_favourite_cubit.dart';
+import 'package:animal_app/features/home/data/cubit/send_favourite_cubit.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,11 +40,19 @@ class CardItem extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.network(
-                image,
-                width: 90.w,
-                height: 90.h,
-                fit: BoxFit.cover,
+              Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8).r,
+                ),
+                child: FancyShimmerImage(
+                  shimmerBaseColor: AppColors.primary,
+                  shimmerHighlightColor: Colors.grey.shade100,
+                  boxFit: BoxFit.fill,
+                  imageUrl: image,
+                  width: 90.w,
+                  height: 90.h,
+                ),
               ),
 
               SizedBox(width: 16.w),

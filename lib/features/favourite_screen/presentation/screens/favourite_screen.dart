@@ -75,6 +75,7 @@ class FavouriteScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: NavigationBar(
+        selectedIndex: 1,
         onDestinationSelected: (value) {
           if (value == 1) {
             Navigator.pushNamed(context, AppRouts.favoriteSceen);

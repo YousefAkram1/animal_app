@@ -33,6 +33,7 @@ dependencies:
   dio: ^5.11.1
   easy_localization: ^3.0.8
   equatable: ^3.0.0
+  fancy_shimmer_image: ^2.0.3
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1

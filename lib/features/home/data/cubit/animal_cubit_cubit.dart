@@ -1,16 +1,16 @@
+import 'package:animal_app/features/home/data/repo/home_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:animal_app/core/utils/models/animal_model.dart';
-import 'package:animal_app/core/networking/repo/app_repo.dart';
 import 'animal_cubit_state.dart';
 
 class AnimalCubitCubit extends Cubit<AnimalCubitState> {
-  AnimalCubitCubit(this.appRepo) : super(AnimalCubitInitial()) {
+  AnimalCubitCubit(this.homeRepo) : super(AnimalCubitInitial()) {
     scrollController.addListener(_onScroll);
   }
 
-  final AppRepo appRepo;
+  final HomeRepo homeRepo;
 
   final ScrollController scrollController = ScrollController();
 
@@ -33,7 +33,7 @@ class AnimalCubitCubit extends Cubit<AnimalCubitState> {
     currentPage = 0;
     animals.clear();
 
-    final result = await appRepo.getAnimals(page: currentPage);
+    final result = await homeRepo.getAnimals(page: currentPage);
 
     result.fold(
       (failure) {
@@ -56,7 +56,7 @@ class AnimalCubitCubit extends Cubit<AnimalCubitState> {
 
     final nextPage = currentPage + 1;
 
-    final result = await appRepo.getAnimals(page: nextPage);
+    final result = await homeRepo.getAnimals(page: nextPage);
 
     result.fold(
       (failure) {

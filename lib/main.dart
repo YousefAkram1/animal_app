@@ -1,12 +1,15 @@
+import 'package:animal_app/core/networking/base_api.dart';
 import 'package:animal_app/core/utils/bloc_observer.dart';
 import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/features/details_screen/data/cubit/get_animal_cubit.dart';
+import 'package:animal_app/features/details_screen/data/repo/details_repo_imple.dart';
 import 'package:animal_app/features/details_screen/presentation/screen/animal_details_screen.dart';
-import 'package:animal_app/core/networking/repo/app_repo_imple.dart';
 import 'package:animal_app/features/favourite_screen/data/cubit/get_favourite_cubit.dart';
-import 'package:animal_app/features/favourite_screen/data/cubit/send_favourite_cubit.dart';
+import 'package:animal_app/features/favourite_screen/data/repo/favourite_repo_imple.dart';
+import 'package:animal_app/features/home/data/cubit/send_favourite_cubit.dart';
 import 'package:animal_app/features/favourite_screen/presentation/screens/favourite_screen.dart';
-import 'package:animal_app/features/home/data/home_cubit/cubit/animal_cubit_cubit.dart';
+import 'package:animal_app/features/home/data/cubit/animal_cubit_cubit.dart';
+import 'package:animal_app/features/home/data/repo/home_repo_imple.dart';
 import 'package:animal_app/features/home/presentation/screens/home_screen.dart';
 import 'package:animal_app/features/splash_screen/presentation/screens/splash_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -38,11 +41,18 @@ class AnimalApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => AnimalCubitCubit(AppRepoImple())..getAnimals(),
+          create: (context) =>
+              AnimalCubitCubit(HomeRepoImple(ApiBase()))..getAnimals(),
         ),
-        BlocProvider(create: (context) => GetAnimalCubit(AppRepoImple())),
-        BlocProvider(create: (context) => SendFavouriteCubit(AppRepoImple())),
-        BlocProvider(create: (context) => GetFavouriteCubit(AppRepoImple())),
+        BlocProvider(
+          create: (context) => GetAnimalCubit(DetailsRepoImple(ApiBase())),
+        ),
+        BlocProvider(
+          create: (context) => SendFavouriteCubit(HomeRepoImple(ApiBase())),
+        ),
+        BlocProvider(
+          create: (context) => GetFavouriteCubit(FavouriteRepoImple(ApiBase())),
+        ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),

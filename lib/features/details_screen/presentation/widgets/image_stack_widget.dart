@@ -1,4 +1,6 @@
+import 'package:animal_app/core/utils/values/app_colors.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -20,7 +22,14 @@ class ImageStack extends StatelessWidget {
               bottomRight: Radius.circular(30),
             ),
           ),
-          child: Expanded(child: Image.network(imageUrl, fit: BoxFit.cover)),
+          child: Expanded(
+            child: FancyShimmerImage(
+              imageUrl: imageUrl,
+              boxFit: BoxFit.cover,
+              shimmerBaseColor: AppColors.primary,
+              shimmerHighlightColor: Colors.grey.shade100,
+            ),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 54, left: 16, right: 16).w,

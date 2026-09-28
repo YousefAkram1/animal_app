@@ -1,11 +1,12 @@
 import 'package:animal_app/core/utils/theme/theme_light.dart';
+import 'package:animal_app/core/utils/values/app_colors.dart';
 import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
 
-import 'package:animal_app/features/favourite_screen/data/cubit/send_favourite_cubit.dart';
+import 'package:animal_app/features/home/data/cubit/send_favourite_cubit.dart';
 
-import 'package:animal_app/features/home/data/home_cubit/cubit/animal_cubit_cubit.dart';
-import 'package:animal_app/features/home/data/home_cubit/cubit/animal_cubit_state.dart';
+import 'package:animal_app/features/home/data/cubit/animal_cubit_cubit.dart';
+import 'package:animal_app/features/home/data/cubit/animal_cubit_state.dart';
 
 import 'package:animal_app/features/home/presentation/widgets/app_bar_widget.dart';
 import 'package:animal_app/features/home/presentation/widgets/card_list_view.dart';
@@ -141,7 +142,11 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: SvgPicture.asset(
                 width: 30.w,
                 height: 30.h,
-                ImageAssets.disableHeart,
+                ImageAssets.heartIcon,
+                colorFilter: ColorFilter.mode(
+                  AppColors.textColor,
+                  BlendMode.srcIn,
+                ),
               ),
               label: '',
             ),
