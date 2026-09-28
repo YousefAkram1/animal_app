@@ -1,4 +1,5 @@
 import 'package:animal_app/core/networking/base_api.dart';
+import 'package:animal_app/core/utils/app_theme.dart';
 import 'package:animal_app/core/utils/bloc_observer.dart';
 import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/features/details_screen/data/cubit/get_animal_cubit.dart';
@@ -72,6 +73,7 @@ class AnimalApp extends StatelessWidget {
               AppRouts.favoriteSceen: (context) => const FavouriteScreen(),
             },
             debugShowCheckedModeBanner: false,
+            theme: AppTheme.getLightTheme(),
             home: SplashScreen(),
           );
         },

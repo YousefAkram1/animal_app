@@ -1,6 +1,5 @@
 import 'package:animal_app/core/utils/values/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class TabSelectItem extends StatefulWidget {
   const TabSelectItem({super.key});
@@ -35,7 +34,6 @@ class _TabSelectItemState extends State<TabSelectItem> {
     return Column(
       children: [
         Wrap(
-          spacing: 2.w,
           children: categories.map((category) {
             final isSelected = selectedCategory == category;
 

@@ -1,7 +1,6 @@
 import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
 import 'package:animal_app/core/utils/values/font_style.dart';
-import 'package:animal_app/core/widgets/app_button.dart';
 import 'package:animal_app/generated/locale_keys.g.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -33,9 +32,7 @@ class SplashScreen extends StatelessWidget {
               style: Fontstyle.regular16,
             ),
             SizedBox(height: 61.h),
-            AppButton(
-              width: 297.w,
-              height: 54.h,
+            TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, AppRouts.homeSceen);
               },

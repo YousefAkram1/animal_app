@@ -1,23 +1,17 @@
-import 'package:animal_app/core/utils/theme/theme_light.dart';
 import 'package:animal_app/core/utils/values/app_colors.dart';
 import 'package:animal_app/core/utils/values/app_routs.dart';
 import 'package:animal_app/core/utils/values/assets.dart';
-
+import 'package:animal_app/core/utils/values/font_style.dart';
 import 'package:animal_app/features/home/data/cubit/send_favourite_cubit.dart';
-
 import 'package:animal_app/features/home/data/cubit/animal_cubit_cubit.dart';
 import 'package:animal_app/features/home/data/cubit/animal_cubit_state.dart';
-
 import 'package:animal_app/features/home/presentation/widgets/app_bar_widget.dart';
 import 'package:animal_app/features/home/presentation/widgets/card_list_view.dart';
 import 'package:animal_app/features/home/presentation/widgets/card_shimmer.dart';
 import 'package:animal_app/features/home/presentation/widgets/chips_selected_widget.dart';
 import 'package:animal_app/features/home/presentation/widgets/search_text_field.dart';
-
 import 'package:animal_app/generated/locale_keys.g.dart';
-
 import 'package:easy_localization/easy_localization.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -68,12 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 SizedBox(height: 20.h),
 
-                Text(
-                  LocaleKeys.home_categories.tr(),
-                  style: lightTheme.textTheme.bodyLarge!.copyWith(
-                    fontSize: 20.sp,
-                  ),
-                ),
+                Text(LocaleKeys.home_categories.tr(), style: Fontstyle.bold20),
 
                 SizedBox(height: 14.h),
 

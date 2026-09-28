@@ -5,15 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
-  textTheme: TextTheme(
-    bodyLarge: Fontstyle.bold32,
-    bodyMedium: Fontstyle.regular16,
-    bodySmall: Fontstyle.medium18,
-  ),
-  primaryColor: Color(0xff44BDB6),
+  fontFamily: FontFamily.poppins,
+
+  primaryColor: AppColors.primary,
   scaffoldBackgroundColor: Color(0xffFFFFFF),
   appBarTheme: AppBarTheme(
-    backgroundColor: Color(0xff44BDB6),
+    backgroundColor: AppColors.primary,
     elevation: 0,
     iconTheme: IconThemeData(color: Colors.white),
     titleTextStyle: TextStyle(
