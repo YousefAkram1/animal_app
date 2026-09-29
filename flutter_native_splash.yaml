@@ -66,7 +66,7 @@ flutter_native_splash:
   image:                assets/images/heart.png
   #image_dark:          assets/splash-invert.png
   # platform-specific image. will override general image if active:
-  # image_android:       assets/images/heart.png
+  image_android:       assets/images/heart.png
   #image_dark_android:  assets/splash-invert-android.png
   #image_ios:           assets/splash-ios.png
   #image_dark_ios:      assets/splash-invert-ios.png
