@@ -74,6 +74,8 @@ class AnimalApp extends StatelessWidget {
             },
             debugShowCheckedModeBanner: false,
             theme: AppTheme.getLightTheme(),
+            darkTheme: AppTheme.getDarkTheme(),
+            themeMode: ThemeMode.system,
             home: SplashScreen(),
           );
         },

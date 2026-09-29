@@ -95,3 +95,11 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_assets:
+  assets_path: 
+    - assets/fonts/
+    - assets/images/
+  output_path: lib/core/utils/test_assets_extention
+  filename: assets.dart  
+  classname: MyAssets
+  ignore_comments: true
